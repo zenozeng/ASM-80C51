@@ -9,6 +9,7 @@ MCS-51 汇编
 sudo dpkg --add-architecture i386
 wget http://plit.de/asem-51/asem51_1.3-2_i386.deb
 sudo dpkg -i asem51_1.3-2_i386.deb
+asem max.asm
 ```
 
 ## 模拟器

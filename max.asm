@@ -1,19 +1,21 @@
 ;;; max.asm --- Compare 2 8-bit numbers
 
 ;; Author: Zeno Zeng <zenoofzeng@gmail.com>
-;; Time-stamp: <2014-12-19 21:30:08 Zeno Zeng>
+;; Time-stamp: <2014-12-19 22:10:11 Zeno Zeng>
 
 ;;; Commentary:
 
-;; Compare 50H(RAM) and 51H(RAM) then move max to 52H(RAM)
+;; Compare 50H(RAM) and 51H(RAM) then move max to A
 
 ;;; Code:
 
 INIT:   ;; 初始化数据
         MOV DPTR, #50H
-        MOVX @DPTR, #10H
+        MOV A, #50H
+        MOVX @DPTR, A
         MOV DPTR, #51H
-        MOVX @DPTR, #20H
+        MOV A, #40H
+        MOVX @DPTR, A
 
 START:  CLR C                   ; 清零 Cy
 
@@ -32,19 +34,16 @@ START:  CLR C                   ; 清零 Cy
 
         SUBB A, R0              ; 若有借位，Cy 为 1
 
-        ;; if A < RO
-        JC MOV51H               ; Cy != 0, A < R0
+        ;; if A (51H) < RO (50H)
+        JC MOV50H               ; Cy != 0, A < R0
 
         ;; else
-        SJMP MOV50H
+        MOV DPTR, #51H
+        MOVX A, @DPTR
+        JMP FINALLY
 
 MOV50H: MOV DPTR, #50H
         MOVX A, @DPTR
-        MOV DPTR, #52H
-        MOVX @DPTR, A
 
-MOV51H: DPTR, #51H
-        MOVX A, @DPTR
-        MOV DPTR, #52H
-        MOVX @DPTR, A
-
+FINALLY:
+        END
