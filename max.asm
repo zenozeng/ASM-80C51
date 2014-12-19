@@ -1,13 +1,19 @@
 ;;; max.asm --- Compare 2 8-bit numbers
 
 ;; Author: Zeno Zeng <zenoofzeng@gmail.com>
-;; Time-stamp: <2014-12-19 21:20:03 Zeno Zeng>
+;; Time-stamp: <2014-12-19 21:30:08 Zeno Zeng>
 
 ;;; Commentary:
 
 ;; Compare 50H(RAM) and 51H(RAM) then move max to 52H(RAM)
 
 ;;; Code:
+
+INIT:   ;; 初始化数据
+        MOV DPTR, #50H
+        MOVX @DPTR, #10H
+        MOV DPTR, #51H
+        MOVX @DPTR, #20H
 
 START:  CLR C                   ; 清零 Cy
 
