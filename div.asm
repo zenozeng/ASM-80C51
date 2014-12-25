@@ -3,11 +3,11 @@
 
 SETDATA:
         ;; 被除数（会被逐渐取代为商）
-        MOV R7, #10H            ; 高位
-        MOV R6, #10H            ; 低位
+        MOV R7, #0FFH            ; 高位
+        MOV R6, #0FFH            ; 低位
         ;; 除数
-        MOV R5, #01H            ; 高位
-        MOV R4, #00H            ; 低位
+        MOV R5, #00H            ; 高位
+        MOV R4, #01H            ; 低位
 
 INIT:
         CLR A
@@ -67,9 +67,12 @@ LOOP:
 
         ;; 该位为 1
 	INC R6                  ; 写入结果
-        MOV R3, A               ; 写入高位差值到余数高位
-        MOV A, R0               ; 写入低位差值到余数低位
+        ;; 写入高位差值到余数高位
+        MOV R3, A
+        ;; 写入低位差值到余数低位
+        MOV A, R0
         MOV R2, A
+
 NEXT:
         DJNZ R1, LOOP
 
