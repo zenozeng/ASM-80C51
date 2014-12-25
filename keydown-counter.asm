@@ -1,7 +1,7 @@
 ;;; keydown-counter.asm -- Count keydown form P3.2 and outputs in P1 using LED
 
 ;; Author: Zeno Zeng <zenoofzeng@gmail.com>
-;; Time-stamp: <2014-12-25 20:34:21 Zeno Zeng>
+;; Time-stamp: <2014-12-25 20:38:07 Zeno Zeng>
 
 ;;; Commentary:
 
@@ -10,7 +10,7 @@
 ;;; Code:
 
 	ORG 0000H
-        AJMP MAIN
+        AJMP INIT
         ORG 0003H
         AJMP ONKEYDOWN
 
@@ -25,3 +25,7 @@ LISTENING:
 ONKEYDOWN:
         INC A
         MOV P1, A
+        RETI
+
+EXIT:
+        END
