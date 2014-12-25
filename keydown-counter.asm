@@ -1,7 +1,7 @@
 ;;; keydown-counter.asm -- Count keydown form P3.2 and outputs in P1 using LED
 
 ;; Author: Zeno Zeng <zenoofzeng@gmail.com>
-;; Time-stamp: <2014-12-25 20:38:07 Zeno Zeng>
+;; Time-stamp: <2014-12-25 21:56:36 Zeno Zeng>
 
 ;;; Commentary:
 
